@@ -1,0 +1,1959 @@
+<!doctype html>
+<html lang="de" data-visualize-standalone>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Campus for Finance – Sponsoring-Konzept</title>
+<style>:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 14px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: var(--primary);
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans: -apple-system, system-ui, "Segoe UI", sans-serif;
+  --font-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 430;
+  --font-weight-medium: 500;
+  --icon-size: 16px;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --corner-shape: round;
+  --radius: var(--border-radius-lg, 10px);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 1.6);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 17 17'%3E%3Cpath d='M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z'/%3E%3C/svg%3E");
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html > body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: var(--visualize-paint-gutter, 0px);
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  font-size: var(--font-size-normal);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+:root:not([data-app-block-surface], [data-visualize-standalone]) > body {
+  padding: 12px;
+}
+
+.cursor-interaction {
+  cursor: var(--cursor-interaction, pointer);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: var(--cursor-interaction, pointer);
+  font-weight: var(--font-weight-medium, 500);
+  text-decoration: none;
+  text-underline-offset: 2px;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.3;
+}
+
+b,
+strong,
+th {
+  font-weight: var(--font-weight-medium);
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: var(--corner-shape);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table-responsive > .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead th {
+  padding-block: 8px;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 16%, transparent);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 6px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align="right"]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align="center"]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: var(--corner-shape);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+#widget > :not(.card, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--popover-foreground);
+  background: var(--popover);
+  box-shadow: none;
+  font-size: var(--font-size-tooltip);
+  line-height: var(--line-height-tooltip);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* The shared runtime owns data-tooltip; suppress AppBlock's pseudo-tooltip. */
+main [data-tooltip]::after {
+  content: none;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  margin-block: 6px;
+  border: 0;
+  background: var(--border);
+}
+
+.nav {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 4px;
+}
+
+.progress {
+  display: flex;
+  height: 8px;
+  margin-block: calc((var(--line-height-normal, 1.5em) - 8px) / 2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar:only-child {
+  border-radius: var(--radius-full);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  padding: 3px 8px;
+  border-radius: var(--radius-full);
+  color: var(--accent-foreground);
+  background: var(--accent);
+  font-weight: var(--font-weight-medium);
+}
+
+small,
+.text-small,
+.viz-badge {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls > .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls > .form-label > :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.nav-link,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+.btn,
+.nav-link {
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  min-height: 28px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: var(--cursor-interaction, pointer);
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover,
+.nav-link:not(:disabled):not([aria-disabled="true"]):hover {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.btn-primary {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: padding-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: padding-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.nav-pills .nav-link {
+  min-width: 0;
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.nav-justified .nav-link {
+  flex: 1 1 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.nav-pills .nav-link.active {
+  color: var(--foreground);
+  background: var(--muted);
+}
+
+.btn:disabled,
+.nav-link:disabled,
+.nav-link[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  background: var(--secondary);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type="file"] {
+  padding: 0;
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control[type="file"]::file-selector-button {
+  min-height: 26px;
+  margin-right: 8px;
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+}
+
+.form-control[type="file"]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type="color"] {
+  width: 40px;
+  height: 28px;
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type="color"]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: var(--corner-shape);
+}
+
+textarea.form-control {
+  height: auto;
+  min-height: 72px;
+  padding: 8px 10px;
+  resize: vertical;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  min-height: 28px;
+  margin: 0;
+  padding: 0 32px 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--muted-foreground) 50%),
+    linear-gradient(135deg, var(--muted-foreground) 50%, transparent 50%);
+  background-position:
+    calc(100% - 14px) 50%,
+    calc(100% - 10px) 50%;
+  background-repeat: no-repeat;
+  background-size: 4px 4px;
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-select:focus-visible {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-check {
+  display: flex;
+  min-height: 20px;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"] {
+  border-color: var(--input);
+  border-radius: var(--radius-sm);
+  corner-shape: var(--corner-shape);
+  background-color: var(--secondary);
+  box-shadow: var(--shadow-sm);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch) .form-check-input[type="checkbox"]:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type="checkbox"]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: "";
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+}
+
+.form-check-input[type="radio"] {
+  width: 14px;
+  height: 14px;
+  border-radius: var(--radius-full);
+}
+
+.form-check-input[type="radio"]:checked {
+  border: 2px solid var(--primary);
+  background:
+    radial-gradient(circle, var(--primary-foreground) 0 2.5px, transparent 3px),
+    var(--primary);
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+  box-shadow: var(--shadow-sm);
+  content: "";
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--primary);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: 28px;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  border: 0;
+  accent-color: var(--primary);
+  background: linear-gradient(
+      color-mix(in srgb, var(--foreground) 7%, transparent),
+      color-mix(in srgb, var(--foreground) 7%, transparent)
+    )
+    center / 100% 2px no-repeat;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-webkit-slider-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range::-moz-range-track {
+  height: 28px;
+  background: transparent;
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  background: light-dark(var(--primary-foreground), var(--foreground));
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  border-color: var(--ring);
+  box-shadow: inset 0 0 0 1px var(--ring);
+}
+
+.form-range:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed="true"],
+  [aria-selected="true"],
+  .is-selected
+) {
+  border-color: var(--primary);
+  color: var(--primary-foreground);
+  background: var(--primary);
+}
+
+.btn.viz-tile:is([aria-pressed="true"], [aria-selected="true"], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible,
+.nav-link:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@media (pointer: coarse) {
+  .btn,
+  .nav-link,
+  .form-control,
+  .form-select {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Keep small-screen WebKit from zooming when a text field receives focus. */
+  .form-control,
+  .form-select {
+    font-size: max(16px, var(--font-size-normal));
+  }
+
+  .form-control[type="file"]::file-selector-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .form-control-color[type="color"] {
+    width: 44px;
+    height: 44px;
+  }
+
+  .form-control:is(
+    [type="date"],
+    [type="datetime-local"],
+    [type="month"],
+    [type="time"],
+    [type="week"]
+  ) {
+    min-width: 0;
+    max-width: 100%;
+    padding-block: 8px;
+  }
+
+  .form-check {
+    min-height: 44px;
+    padding-inline: 15px;
+  }
+
+  .form-check-input {
+    position: relative;
+  }
+
+  .form-check-input::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    content: "";
+    transform: translate(-50%, -50%);
+  }
+
+  .form-check-label {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .form-range {
+    height: 44px;
+    touch-action: pan-y;
+  }
+
+  .form-range::-webkit-slider-runnable-track {
+    height: 44px;
+  }
+
+  .form-range::-moz-range-track {
+    height: 44px;
+  }
+
+  .form-range::-webkit-slider-thumb {
+    margin-top: 12px;
+  }
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget > svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: var(--icon-size) !important;
+  height: var(--icon-size) !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html>body{padding:0}</style>
+</head>
+<body>
+<script type="application/json" id="codex-visualization-widget-state">__CODEX_VISUALIZATION_WIDGET_STATE__</script>
+<script>(() => {
+  const root = document.documentElement;
+  const mediaQuery = globalThis.matchMedia("(prefers-color-scheme: dark)");
+  const apply = Reflect.apply;
+  const isArray = Array.isArray;
+  const hasOwn = Object.hasOwn;
+  const parentWindow = globalThis.parent;
+  const stringify = JSON.stringify;
+  const parse = JSON.parse;
+  const encode = TextEncoder.prototype.encode.bind(new TextEncoder());
+  const initialStateElement = document.getElementById(
+    "codex-visualization-widget-state",
+  );
+  const initialGlobals = parse(initialStateElement?.textContent ?? "{}");
+  initialStateElement?.remove();
+  /** @type {Record<string, unknown> | null} */
+  let state = initialGlobals.widgetState ?? null;
+  const statePersistence = initialGlobals.statePersistence ?? "none";
+  let nextStateRequestId = 0;
+  /** @type {Map<number, { resolve: () => void; reject: (error: Error) => void; timeout: ReturnType<typeof globalThis.setTimeout>; serializedState: string }>} */
+  const pendingStateWrites = new Map();
+  const persistenceError = () =>
+    Object.assign(
+      new Error("The host could not persist the widget state update"),
+      {
+        code: -32000,
+        data: { code: "widget_state_persistence_failed", retryable: false },
+      },
+    );
+  /**
+   * @param {object} prototype
+   * @param {string} property
+   */
+  const getPrototypeGetter = (prototype, property) => {
+    // oxlint-disable-next-line typescript/unbound-method -- invoked through captured Reflect.apply
+    const getter = Object.getOwnPropertyDescriptor(prototype, property)?.get;
+    if (getter == null) {
+      throw new Error(`Missing ${property} getter`);
+    }
+    return getter;
+  };
+  const getMessageData = getPrototypeGetter(MessageEvent.prototype, "data");
+  const getMessagePorts = getPrototypeGetter(MessageEvent.prototype, "ports");
+  const getMessageSource = getPrototypeGetter(MessageEvent.prototype, "source");
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const addHostMessageListener = MessagePort.prototype.addEventListener;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const postHostMessage = MessagePort.prototype.postMessage;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const startHostPort = MessagePort.prototype.start;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const stopMessagePropagation = Event.prototype.stopImmediatePropagation;
+  /** @type {MessagePort | null} */
+  let hostPort = null;
+  const postToHost = (type, payload) => {
+    if (hostPort != null) {
+      apply(postHostMessage, hostPort, [{ type, ...payload }]);
+    }
+  };
+  const openExternal = ({ href }) => {
+    if (globalThis.navigator.userActivation?.isActive === true) {
+      postToHost("open-external", { href });
+    }
+  };
+  const sendFollowUpMessage = ({ context, prompt, title }) => {
+    if (globalThis.navigator.userActivation?.isActive === true) {
+      postToHost("follow-up", { context, prompt, title });
+    }
+    return Promise.resolve();
+  };
+  /**
+   * @param {Record<string, unknown> | ((previous: Record<string, unknown> | null) => Record<string, unknown>)} next
+   * @returns {Promise<void>}
+   */
+  const setWidgetState = async (next) => {
+    const nextState = typeof next === "function" ? next(state) : next;
+    if (
+      nextState == null ||
+      typeof nextState !== "object" ||
+      isArray(nextState)
+    ) {
+      throw new TypeError("Widget state must be a JSON object");
+    }
+    const inputState = stringify(
+      nextState,
+      (_key, /** @type {unknown} */ value) => {
+        if (
+          typeof value === "undefined" ||
+          typeof value === "function" ||
+          typeof value === "symbol" ||
+          (typeof value === "number" && !Number.isFinite(value))
+        ) {
+          throw new TypeError("Widget state must be a JSON object");
+        }
+        return value;
+      },
+    );
+    const parsedState = parse(inputState);
+    if (
+      parsedState == null ||
+      typeof parsedState !== "object" ||
+      isArray(parsedState)
+    ) {
+      throw new TypeError("Widget state must be a JSON object");
+    }
+    const storedState = {
+      modelContent: null,
+      privateContent: null,
+      ...parsedState,
+    };
+    const serializedState = stringify(storedState);
+    if (encode(serializedState).length > 16 * 1024) {
+      throw new TypeError(
+        "Widget state must be a JSON object of at most 16 KiB",
+      );
+    }
+    if (
+      hasOwn(storedState, "imageIds") &&
+      (!isArray(storedState.imageIds) ||
+        storedState.imageIds.some(
+          (/** @type {unknown} */ id) => typeof id !== "string",
+        ))
+    ) {
+      throw new TypeError("Widget state imageIds must be an array of strings");
+    }
+    if (storedState.imageIds?.length > 0) {
+      throw Object.assign(
+        new TypeError("Visualization state does not support image attachments"),
+        { code: -32602, data: { code: "images_unsupported" } },
+      );
+    }
+    state = storedState;
+    globalThis.openai.widgetState = state;
+    globalThis.dispatchEvent(
+      new CustomEvent("openai:set_globals", {
+        detail: { globals: { widgetState: state } },
+      }),
+    );
+    if (statePersistence === "none") {
+      throw persistenceError();
+    }
+    const id = ++nextStateRequestId;
+    return new Promise((resolve, reject) => {
+      const timeout = globalThis.setTimeout(() => {
+        pendingStateWrites.delete(id);
+        reject(persistenceError());
+      }, 30_000);
+      pendingStateWrites.set(id, { resolve, reject, timeout, serializedState });
+      postToHost("widget-state-write", { id, state: serializedState });
+    });
+  };
+  const syncTheme = () => {
+    const theme = mediaQuery.matches ? "dark" : "light";
+    root.dataset.theme = theme;
+    globalThis.openai = {
+      ...globalThis.openai,
+      openExternal,
+      sendFollowUpMessage,
+      setWidgetState,
+      theme,
+      visualizationStyleVariables: {},
+      visualizationTheme: theme,
+      widgetState: state,
+      statePersistence,
+      stateModelContext: "none",
+    };
+    globalThis.dispatchEvent(
+      new CustomEvent("openai:set_globals", {
+        detail: { globals: globalThis.openai },
+      }),
+    );
+  };
+  const sendHeight = () => {
+    postToHost("height", {
+      height: Math.ceil(
+        Math.max(
+          document.body.scrollHeight,
+          document.body.getBoundingClientRect().height,
+        ),
+      ),
+    });
+  };
+
+  globalThis.addEventListener(
+    "message",
+    (event) => {
+      const data = apply(getMessageData, event, []);
+      const ports = apply(getMessagePorts, event, []);
+      const source = apply(getMessageSource, event, []);
+      if (
+        hostPort != null ||
+        source !== parentWindow ||
+        typeof data !== "object" ||
+        data?.type !== "codex-visualization-initialize" ||
+        !isArray(ports) ||
+        ports.length !== 1
+      ) {
+        return;
+      }
+      apply(stopMessagePropagation, event, []);
+      const nextHostPort = ports[0];
+      try {
+        apply(addHostMessageListener, nextHostPort, [
+          "message",
+          (event) => {
+            const data = apply(getMessageData, event, []);
+            if (typeof data === "object" && data?.type === "measure") {
+              sendHeight();
+            } else if (
+              typeof data === "object" &&
+              data?.type === "widget-state-result"
+            ) {
+              /** @type {unknown} */
+              const id = data.id;
+              if (typeof id !== "number") {
+                return;
+              }
+              const pending = pendingStateWrites.get(id);
+              if (pending != null) {
+                pendingStateWrites.delete(id);
+                globalThis.clearTimeout(pending.timeout);
+                if (data.ok === true) {
+                  pending.resolve();
+                } else {
+                  pending.reject(persistenceError());
+                }
+              }
+            }
+          },
+        ]);
+        apply(startHostPort, nextHostPort, []);
+      } catch {
+        return;
+      }
+      hostPort = nextHostPort;
+      for (const [id, { serializedState }] of pendingStateWrites) {
+        postToHost("widget-state-write", { id, state: serializedState });
+      }
+      sendHeight();
+    },
+    { capture: true },
+  );
+  document.currentScript?.remove();
+  mediaQuery.addEventListener("change", syncTheme);
+  globalThis.addEventListener("click", (event) => {
+    if (event.defaultPrevented) {
+      return;
+    }
+    let element = null;
+    if (event.target instanceof globalThis.Element) {
+      element = event.target;
+    } else if (event.target instanceof globalThis.Node) {
+      element = event.target.parentElement;
+    }
+    const link = element?.closest("a[href]");
+    const href = link?.getAttribute("href");
+    if (href == null) {
+      return;
+    }
+    if (href.startsWith("#")) {
+      let id;
+      try {
+        id = decodeURIComponent(href.slice(1));
+      } catch {
+        return;
+      }
+      const target = id.length === 0 ? root : document.getElementById(id);
+      if (
+        target == null ||
+        globalThis.navigator.userActivation?.isActive !== true
+      ) {
+        return;
+      }
+      event.preventDefault();
+      postToHost("scroll-to", {
+        top: target.getBoundingClientRect().top + globalThis.scrollY,
+      });
+      return;
+    }
+    event.preventDefault();
+    openExternal({ href });
+  });
+  new ResizeObserver(sendHeight).observe(document.body);
+  syncTheme();
+})();
+</script>
+<div id="cff-details-v3" aria-label="Campus for Finance: interaktiver Konzeptentwurf mit fiktiven Beispieldaten">
+  <style>
+    #cff-details-v3{--cff-bg:light-dark(#f5f6f8,#151a24);--cff-panel:light-dark(#ffffff,#202736);--cff-text:light-dark(#17253b,#eef3fc);--cff-sub:light-dark(#536276,#b5c0d1);--cff-line:light-dark(#dce2ea,#3d4758);--cff-brand:light-dark(#203d65,#b8d1f3);--cff-onbrand:light-dark(#ffffff,#132238);--cff-tint:light-dark(#e9eff7,#2a3c55);--cff-good:light-dark(#24624a,#a1d7bf);--cff-good-bg:light-dark(#eaf4ed,#203d33);--cff-warn:light-dark(#85581f,#ebc487);--cff-warn-bg:light-dark(#fbf1df,#443622);color:var(--cff-text);background:var(--cff-bg);font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.5;border:1px solid var(--cff-line);border-radius:14px;overflow:clip;max-width:100%;color-scheme:light dark}
+    #cff-details-v3 *{box-sizing:border-box}
+    #cff-details-v3 button,#cff-details-v3 select,#cff-details-v3 input{font:inherit;color:inherit}
+    #cff-details-v3 button{background:var(--cff-panel);border:1px solid var(--cff-line);border-radius:7px;padding:9px 12px;text-align:left;white-space:normal}
+    #cff-details-v3 button:hover{background:var(--cff-tint)}
+    #cff-details-v3 button:focus-visible,#cff-details-v3 select:focus-visible{outline:3px solid var(--cff-brand);outline-offset:3px}
+    #cff-details-v3 .cff-top{padding:17px 22px;display:flex;gap:16px;justify-content:space-between;align-items:center;flex-wrap:wrap;background:var(--cff-panel);border-bottom:1px solid var(--cff-line)}
+    #cff-details-v3 .cff-brand{font-weight:500;letter-spacing:.01em;font-size:17px}
+    #cff-details-v3 .cff-sub{color:var(--cff-sub);font-size:12px}
+    #cff-details-v3 .cff-demo{font-size:12px;padding:4px 9px;border-radius:20px;background:var(--cff-warn-bg);color:var(--cff-warn)}
+    #cff-details-v3 .cff-chrome{display:flex;gap:14px;justify-content:space-between;align-items:center;padding:12px 22px;flex-wrap:wrap;border-bottom:1px solid var(--cff-line)}
+    #cff-details-v3 .cff-nav{display:flex;flex-wrap:wrap;gap:6px}
+    #cff-details-v3 .cff-nav button{background:transparent;border-color:transparent}
+    #cff-details-v3 button[aria-pressed="true"]{background:var(--cff-brand);color:var(--cff-onbrand);border-color:var(--cff-brand)}
+    #cff-details-v3 label{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+    #cff-details-v3 select{border:1px solid var(--cff-line);border-radius:6px;background:var(--cff-panel);padding:7px 10px;max-width:100%}
+    #cff-details-v3 .cff-main{padding:22px}
+    #cff-details-v3 h2{margin:0 0 6px;font-size:22px;font-weight:500;line-height:1.25}
+    #cff-details-v3 h3{margin:0;font-size:17px;font-weight:500}
+    #cff-details-v3 .cff-eyebrow{color:var(--cff-sub);font-size:12px;margin-bottom:5px}
+    #cff-details-v3 .cff-events{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:20px}
+    #cff-details-v3 button.cff-event{padding:20px;display:flex;flex-direction:column;gap:16px;min-width:0}
+    #cff-details-v3 .cff-event-name{font-size:19px;font-weight:500}
+    #cff-details-v3 .cff-money{font-size:30px;font-weight:500;font-variant-numeric:tabular-nums;line-height:1.25}
+    #cff-details-v3 .cff-event-bottom{border-top:1px solid var(--cff-line);padding-top:12px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;width:100%}
+    #cff-details-v3 .cff-pairs{display:flex;gap:22px;flex-wrap:wrap}
+    #cff-details-v3 .cff-shortcuts{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}
+    #cff-details-v3 .cff-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));background:var(--cff-panel);border:1px solid var(--cff-line);border-radius:9px;margin:18px 0}
+    #cff-details-v3 .cff-metric{padding:17px;border-right:1px solid var(--cff-line);min-width:0}
+    #cff-details-v3 .cff-metric:last-child{border-right:0}
+    #cff-details-v3 .cff-metric .cff-money{font-size:25px}
+    #cff-details-v3 .cff-filters{display:flex;flex-wrap:wrap;gap:7px;margin:16px 0}
+    #cff-details-v3 .cff-count{font-variant-numeric:tabular-nums;opacity:.8;margin-left:6px}
+    #cff-details-v3 .cff-list{background:var(--cff-panel);border:1px solid var(--cff-line);border-radius:9px;overflow:clip}
+    #cff-details-v3 .cff-row{display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr) minmax(0,.9fr) minmax(0,1.25fr);gap:12px;align-items:center;padding:13px 16px;border-top:1px solid var(--cff-line);min-width:0}
+    #cff-details-v3 .cff-row:first-child{border-top:0}
+    #cff-details-v3 .cff-row-head{color:var(--cff-sub);font-size:12px;background:var(--cff-bg)}
+    #cff-details-v3 .cff-row>div{min-width:0;overflow-wrap:anywhere}
+    #cff-details-v3 .cff-company{border:0;background:transparent;color:var(--cff-brand);font-weight:500;padding:2px 0}
+    #cff-details-v3 .cff-pill{display:inline-block;padding:3px 7px;border-radius:5px;background:var(--cff-tint);font-size:12px;max-width:100%}
+    #cff-details-v3 .cff-pill-good{background:var(--cff-good-bg);color:var(--cff-good)}
+    #cff-details-v3 .cff-pill-next{background:var(--cff-warn-bg);color:var(--cff-warn)}
+    #cff-details-v3 .cff-label-mobile{display:none;color:var(--cff-sub);font-size:12px}
+    #cff-details-v3 .cff-empty{padding:24px;color:var(--cff-sub)}
+    #cff-details-v3 .cff-detail{margin-top:18px;background:var(--cff-panel);border:1px solid var(--cff-line);border-radius:9px;padding:18px}
+    #cff-details-v3 .cff-detail-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:16px}
+    #cff-details-v3 .cff-detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    #cff-details-v3 .cff-field{margin-bottom:12px;overflow-wrap:anywhere}
+    #cff-details-v3 .cff-timeline{margin:0;padding:0;list-style:none}
+    #cff-details-v3 .cff-timeline li{padding:10px 0;border-bottom:1px solid var(--cff-line)}
+    #cff-details-v3 .cff-timeline li:last-child{border-bottom:0}
+    #cff-details-v3 .cff-history{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0 16px}
+    #cff-details-v3 .cff-draft{margin-top:12px;background:var(--cff-bg);padding:14px;border-radius:7px;white-space:pre-line;overflow-wrap:anywhere}
+    #cff-details-v3 .cff-foot{padding:11px 22px;border-top:1px solid var(--cff-line);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;background:var(--cff-panel);color:var(--cff-sub);font-size:12px}
+    #cff-details-v3 .cff-notice{margin-top:12px;color:var(--cff-sub);font-size:12px}
+    #cff-details-v3 .cff-search-label{display:block;font-size:12px;color:var(--cff-sub);margin:14px 0 5px}
+    #cff-details-v3 .cff-search{display:block;width:100%;padding:10px 12px;border:1px solid var(--cff-line);border-radius:7px;background:var(--cff-panel);margin-bottom:14px;min-width:0}
+    #cff-details-v3 .cff-actions{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+    #cff-details-v3 .cff-edit{margin:14px 0;display:grid;gap:10px;padding:14px;background:var(--cff-bg);border-radius:7px}
+    #cff-details-v3 .cff-edit label{display:flex;flex-direction:column;align-items:stretch;gap:5px}
+    #cff-details-v3 .cff-edit input,#cff-details-v3 .cff-edit select{width:100%;min-width:0;padding:8px 10px;border:1px solid var(--cff-line);border-radius:6px;background:var(--cff-panel);color:var(--cff-text);font:inherit}
+    #cff-details-v3 label.cff-check{display:flex;flex-direction:row;align-items:center;flex-wrap:nowrap;margin:12px 0}
+    #cff-details-v3 .cff-check input{width:auto;flex:none}
+    #cff-details-v3 button:disabled{opacity:.45}
+    #cff-details-v3 #cff-announcement:not(:empty){padding:10px 22px;margin:0;background:var(--cff-tint);color:var(--cff-text)}
+    #cff-details-v3 [hidden]{display:none!important}
+    @media(max-width:660px){#cff-details-v3 .cff-events,#cff-details-v3 .cff-detail-grid{grid-template-columns:1fr}#cff-details-v3 .cff-main{padding:16px}#cff-details-v3 .cff-top,#cff-details-v3 .cff-chrome{padding:14px 16px}#cff-details-v3 .cff-row{grid-template-columns:1fr 1fr}#cff-details-v3 .cff-row-head{display:none}#cff-details-v3 .cff-label-mobile{display:block}#cff-details-v3 .cff-metrics{grid-template-columns:1fr}#cff-details-v3 .cff-metric{border-right:0;border-bottom:1px solid var(--cff-line);padding:12px 16px}#cff-details-v3 .cff-metric:last-child{border-bottom:0}#cff-details-v3 .cff-money{font-size:25px}#cff-details-v3 .cff-detail-top{flex-wrap:wrap}}
+    @media(pointer:coarse){#cff-details-v3 button,#cff-details-v3 select{min-height:44px}}
+    #cff-details-v3 .cff-detail-nav{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:14px;border-bottom:1px solid var(--cff-line)}
+    #cff-details-v3 .cff-detail-body{padding-top:16px}
+    #cff-details-v3 .cff-form-stack{display:grid;gap:10px;min-width:0}
+    #cff-details-v3 .cff-edit textarea{width:100%;min-width:0;padding:9px 10px;border:1px solid var(--cff-line);border-radius:6px;background:var(--cff-panel);color:var(--cff-text);font:inherit;resize:vertical}
+    #cff-details-v3 .cff-edit input[type=file]{max-width:100%;white-space:normal;overflow-wrap:anywhere}
+    #cff-details-v3 .cff-item-list{list-style:none;margin:12px 0;padding:0}
+    #cff-details-v3 .cff-item-list>li{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;border-bottom:1px solid var(--cff-line);padding:13px 0}
+    #cff-details-v3 .cff-item-main{min-width:0;flex:1 1 200px;overflow-wrap:anywhere}
+    #cff-details-v3 .cff-item-list .cff-check{margin:0 0 5px}
+    #cff-details-v3 .cff-item-list .cff-actions{margin:0;align-items:center}
+    #cff-details-v3 .cff-done{text-decoration:line-through;color:var(--cff-sub)}
+    #cff-details-v3 .cff-archive{margin:14px 0;padding:12px 0;border-top:1px solid var(--cff-line);border-bottom:1px solid var(--cff-line)}
+    #cff-details-v3 .cff-archive summary{font-weight:500}
+    #cff-details-v3 .cff-prewrap{white-space:pre-wrap;overflow-wrap:anywhere}
+    #cff-details-v3 a{color:var(--cff-brand);overflow-wrap:anywhere}
+    #cff-details-v3 .cff-detail-grid>div{min-width:0}
+    @media(pointer:coarse){#cff-details-v3 .cff-edit input,#cff-details-v3 .cff-edit textarea{font-size:16px}}
+  </style>
+  <div class="cff-top">
+    <div><div class="cff-brand">Campus for Finance</div><div class="cff-sub">Sponsoring</div></div>
+    <span class="cff-demo">Konzept · alle Daten fiktiv</span>
+  </div>
+  <div class="cff-chrome">
+    <nav class="cff-nav" aria-label="Hauptbereiche">
+      <button type="button" class="cursor-interaction" data-nav="home" aria-pressed="true">Übersicht</button>
+      <button type="button" class="cursor-interaction" data-nav="directory" aria-pressed="false">Alle Unternehmen</button>
+    </nav>
+    <label id="cff-year-label">Eventjahr <select id="cff-year" class="cursor-interaction"><option value="2027">2027</option><option value="2026">2026</option><option value="2028">2028</option></select></label>
+  </div>
+  <main class="cff-main" id="cff-screen"></main>
+  <div class="cff-foot"><span>2 Mitglieder im Sponsoring-Team</span><span>Demo · Eingaben und Dateien nur in dieser geöffneten Ansicht</span></div>
+  <div id="cff-announcement" class="cff-notice" role="status" aria-live="polite"></div>
+  <script>
+(()=>{
+  const root=document.getElementById('cff-details-v3');
+  const screen=root.querySelector('#cff-screen');
+  const eventNames={nyc:"New Year's Conference",pec:'Private Equity Conference'};
+  const labels={all:'Allgemeine Liste',todo:'Noch anzufragen',pending:'Ausstehend',yes:'Zusagen',no:'Absagen',next:'Nächstes Jahr'};
+  const singular={todo:'Noch anzufragen',pending:'Ausstehend',yes:'Zusage',no:'Absage'};
+  const companies=[
+    {id:'nord',name:'Nordstern Bank',contact:'Alex Beispiel',mail:'alex@nordstern.example',owner:'Kim'},
+    {id:'main',name:'Mainblick Partners',contact:'Robin Muster',mail:'robin@mainblick.example',owner:'Teammitglied 2'},
+    {id:'elb',name:'Elbtor Consulting',contact:'Lena Beispiel',mail:'lena@elbtor.example',owner:'Kim'},
+    {id:'kontur',name:'Kontur Capital',contact:'Sam Muster',mail:'sam@kontur.example',owner:'Teammitglied 2'},
+    {id:'west',name:'Westufer Equity',contact:'Nina Beispiel',mail:'nina@westufer.example',owner:'Kim'},
+    {id:'alster',name:'Alster Finance',contact:'Max Muster',mail:'max@alster.example',owner:'Teammitglied 2'}
+  ];
+  const seed=[
+    ['nord','nyc',2027,'yes',18000,true,12000,'Career Fair + Workshop','2 Personen bestätigt','Vertrag unterschrieben. Workshop-Thema noch offen.'],
+    ['main','nyc',2027,'yes',12000,false,0,'Career Fair','Noch offen','12.000 € zugesagt; Vertrag ausstehend.'],
+    ['elb','nyc',2027,'pending',8000,false,0,'Workshop','Noch offen','Workshop-Angebot wird intern besprochen.'],
+    ['kontur','nyc',2027,'no',null,false,0,'—','Keine Teilnahme','Grundsätzlich kein Sponsoring solcher Events.'],
+    ['alster','nyc',2027,'no',null,false,0,'Career Fair','Keine Teilnahme','Dieses Jahr kein Budget; nächstes Jahr gerne anfragen.'],
+    ['west','nyc',2027,'todo',null,false,0,'Noch offen','Noch offen','Kontakt recherchiert; erste Anfrage noch nicht gesendet.'],
+    ['west','pec',2027,'yes',20000,true,5000,'Exclusive Event','3 Personen bestätigt','Vertrag unterschrieben; Termin abstimmen.'],
+    ['nord','pec',2027,'pending',10000,false,0,'Interviews','Noch offen','Recruiting-Call geplant; noch keine Zusage.'],
+    ['main','pec',2027,'no',null,false,0,'Noch offen','Keine Teilnahme','Für 2027 kein Budget; 2028 erneut sprechen.'],
+    ['kontur','pec',2027,'no',null,false,0,'—','Keine Teilnahme','Grundsätzlich kein Sponsoring solcher Events.'],
+    ['elb','pec',2027,'todo',null,false,0,'Noch offen','Noch offen','Als möglicher Partner vorgesehen.'],
+    ['alster','pec',2027,'todo',null,false,0,'Noch offen','Noch offen','Erste Anfrage noch nicht gesendet.'],
+    ['nord','nyc',2026,'yes',15000,true,15000,'Career Fair','2 Personen teilgenommen','Career Fair durchgeführt; positive Rückmeldung.'],
+    ['main','nyc',2026,'yes',10000,true,10000,'Workshop','2 Personen teilgenommen','Workshop durchgeführt; Interesse an erneuter Zusammenarbeit.'],
+    ['west','pec',2026,'yes',17000,true,17000,'Exclusive Event','3 Personen teilgenommen','Exclusive Event durchgeführt.']
+  ];
+  const records=seed.map((s,i)=>({id:i+1,c:s[0],event:s[1],year:s[2],status:s[3],amount:s[4],contract:s[5],paid:s[6],format:s[7],attendance:s[8],note:s[9],sent:s[3]!=='todo',reason:s[3]==='no'?(s[0]==='kontur'?'never':'budget'):'',again:s[3]==='no'&&s[0]!=='kontur',log:[]}));
+  const state={view:'event',event:'nyc',year:2027,filter:'all',query:'',selected:null,detailTab:'overview',editingFollowup:null};
+  let nextDetailId=100;
+  companies.forEach(c=>Object.assign(c,{role:'Recruiting',phone:'',website:'',industry:'',location:'',info:'',outlookUrl:'',contactHistory:[],followups:[],communication:[],documents:[]}));
+  companies[0].followups.push({id:nextDetailId++,title:'Workshop-Thema mit Ansprechpartner abstimmen',date:'2026-09-25',owner:'Kim',scope:'nyc:2027',done:false});
+  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const euro=n=>n===null?'Noch offen':new Intl.NumberFormat('de-DE',{style:'currency',currency:'EUR',maximumFractionDigits:0}).format(n);
+  const cmp=id=>companies.find(c=>c.id===id);
+  const rows=(event=state.event,year=state.year)=>records.filter(r=>r.event===event&&r.year===year);
+  const current=id=>rows().find(r=>r.c===id);
+  const past=id=>records.filter(r=>r.c===id&&r.year<state.year).sort((a,b)=>b.year-a.year);
+  function totals(e){const rr=rows(e);const confirmed=rr.filter(r=>r.status==='yes');return {pledged:confirmed.reduce((a,r)=>a+(r.amount||0),0),contracted:confirmed.filter(r=>r.contract).reduce((a,r)=>a+(r.amount||0),0),paid:rr.reduce((a,r)=>a+r.paid,0),count:confirmed.length,sent:rr.filter(r=>r.sent).length,unknown:confirmed.filter(r=>r.amount===null).length};}
+  function notify(msg){root.querySelector('#cff-announcement').textContent=msg;}
+  function badge(r){if(!r)return '<span class="cff-sub">Nicht eingeplant</span>';return `<span class="cff-pill ${r.status==='yes'?'cff-pill-good':''}">${singular[r.status]}</span>${r.again?`<div class="cff-sub">Für ${r.year+1} vorgemerkt</div>`:''}`;}
+  function historySummary(c){const h=past(c.id);return h.length?h.slice(0,2).map(r=>`${r.event==='nyc'?'NYC':'PEC'} ${r.year}: ${singular[r.status]}${r.status==='yes'?` · ${euro(r.amount)}`:''}`).join('<br>'):'Noch keine frühere Beteiligung erfasst';}
+  function addPlan(c,event,year){let r=records.find(x=>x.c===c&&x.event===event&&x.year===year);if(r)return r;r={id:Math.max(...records.map(x=>x.id))+1,c,event,year,status:'todo',amount:null,contract:false,paid:0,format:'Noch offen',attendance:'Noch offen',note:'Für eine neue Anfrage eingeplant.',sent:false,reason:'',again:false,log:[]};records.push(r);return r;}
+  function home(){return `<div class="cff-eyebrow">Startseite · Eventjahr ${state.year}</div><h2>Eure Konferenzen</h2><div class="cff-events">${Object.keys(eventNames).map(e=>{const t=totals(e);return `<button type="button" class="cff-event cursor-interaction" data-event="${e}"><span class="cff-event-name">${eventNames[e]}</span><span><span class="cff-sub">Zugesagt insgesamt</span><br><span class="cff-money">${euro(t.pledged)}</span></span><span class="cff-pairs"><span><span class="cff-sub">Vertraglich</span><br>${euro(t.contracted)}</span><span><span class="cff-sub">Eingegangen</span><br>${euro(t.paid)}</span></span><span class="cff-event-bottom"><span>${t.count} Zusagen · ${t.sent} Unternehmen angefragt</span><span>Listen öffnen →</span></span></button>`;}).join('')}</div><div class="cff-shortcuts"><button type="button" class="cursor-interaction" data-nav="directory">Alle Unternehmen · ${companies.length}</button></div>`;}
+  function metrics(){const t=totals(state.event);return `<div class="cff-metrics"><div class="cff-metric"><div class="cff-sub">Zugesagt insgesamt</div><div class="cff-money">${euro(t.pledged)}</div>${t.unknown?`<div class="cff-sub">${t.unknown} Zusage(n) ohne Betrag</div>`:''}</div><div class="cff-metric"><div class="cff-sub">Davon vertraglich vereinbart</div><div class="cff-money">${euro(t.contracted)}</div></div><div class="cff-metric"><div class="cff-sub">Tatsächlich eingegangen</div><div class="cff-money">${euro(t.paid)}</div></div></div>`;}
+  function list(){const rr=rows();const counts={all:companies.length,todo:rr.filter(r=>r.status==='todo').length,pending:rr.filter(r=>r.status==='pending').length,yes:rr.filter(r=>r.status==='yes').length,no:rr.filter(r=>r.status==='no').length,next:rr.filter(r=>r.again).length};return `<div class="cff-eyebrow">Unternehmenslisten · Eventjahr ${state.year}</div><h2>${eventNames[state.event]}</h2><div class="cff-nav" style="margin-top:12px">${Object.keys(eventNames).map(e=>`<button type="button" class="cursor-interaction" data-event="${e}" aria-pressed="${state.event===e}">${eventNames[e]}</button>`).join('')}</div>${metrics()}<div class="cff-sub">${totals(state.event).sent} Unternehmen für dieses Event angefragt</div><div class="cff-filters" aria-label="Unternehmenslisten">${Object.keys(labels).map(f=>`<button type="button" class="cursor-interaction" data-filter="${f}" aria-pressed="${state.filter===f}">${f==='next'?`Nächstes Jahr · ${state.year+1}`:labels[f]}<span class="cff-count">${counts[f]}</span></button>`).join('')}</div><label class="cff-search-label" for="cff-search">Unternehmen oder Ansprechpartner suchen</label><input id="cff-search" class="cff-search" type="search" placeholder="Name eingeben …" value="${esc(state.query)}"><div id="cff-list-content">${table()}</div><div class="cff-notice">${state.filter==='next'?'Zusätzliche Merkliste: Die Zusage oder Absage für das aktuelle Jahr bleibt erhalten.':'Alle Unternehmen bleiben im Gesamtbestand. Zähler beziehen sich auf das ausgewählte Eventjahr.'}</div><div id="cff-detail-slot">${detail()}</div>`;}
+  function table(){const q=state.query.trim().toLocaleLowerCase('de');const filtered=companies.filter(c=>{const r=current(c.id);return (!q||`${esc(c.name)} ${esc(c.contact)}`.toLocaleLowerCase('de').includes(q))&&(state.filter==='all'||(state.filter==='next'?r?.again:r?.status===state.filter));});return `<div class="cff-list"><div class="cff-row cff-row-head"><div>Unternehmen / Kontakt</div><div>Stand ${state.year}</div><div>Frühere Zusammenarbeit</div><div>Aktion</div></div>${filtered.length?filtered.map(c=>{const r=current(c.id);return `<div class="cff-row"><div><button type="button" class="cff-company cursor-interaction" data-company="${c.id}">${esc(c.name)}</button><div class="cff-sub">${esc(c.contact)} · ${esc(c.owner)}</div></div><div>${badge(r)}${r?.status==='yes'?`<div>${euro(r.amount)}</div>`:''}</div><div class="cff-sub">${historySummary(c)}</div><div>${state.year<2027?`<button type="button" class="cursor-interaction" data-company="${c.id}">Details ansehen</button>`:!r?`<button type="button" class="cursor-interaction" data-plan="${c.id}">Für ${state.year} einplanen</button>`:state.filter==='next'?`<button type="button" class="cursor-interaction" data-roll="${r.id}">Für ${state.year+1} übernehmen</button>`:r.status==='todo'?`<button type="button" class="cursor-interaction" data-send="${r.id}">Anfrage als gesendet markieren</button>`:`<button type="button" class="cursor-interaction" data-company="${c.id}">${r.status==='pending'?'Rückmeldung eintragen':'Details ansehen'}</button>`}</div></div>`;}).join(''):'<div class="cff-empty">Keine Unternehmen in dieser Ansicht.</div>'}</div>`;}
+  function directory(){const q=state.query.trim().toLocaleLowerCase('de');const cc=companies.filter(c=>`${esc(c.name)} ${esc(c.contact)}`.toLocaleLowerCase('de').includes(q));return `<div class="cff-eyebrow">Gesamtbestand · alle Events und Jahre</div><h2>Alle Unternehmen · ${companies.length}</h2><div class="cff-list" style="margin-top:18px"><div class="cff-row cff-row-head"><div>Unternehmen</div><div>Ansprechpartner</div><div>Kontakt / Betreuung</div><div>Vergangene und aktuelle Vorgänge</div></div>${cc.map(c=>`<div class="cff-row"><div><button type="button" class="cff-company cursor-interaction" data-company="${c.id}">${esc(c.name)}</button></div><div>${esc(c.contact)}</div><div class="cff-sub">${esc(c.mail)}<br>Telefon: ${esc(c.phone||'noch zu recherchieren')}<br>Betreuung: ${esc(c.owner)}</div><div class="cff-sub">${records.filter(r=>r.c===c.id).sort((a,b)=>b.year-a.year).map(r=>`${r.event==='nyc'?'NYC':'PEC'} ${r.year}: ${singular[r.status]}${r.status==='yes'?` · ${euro(r.amount)}`:''}${r.again?` · ${r.year+1} vormerken`:''}`).join('<br>')}</div></div>`).join('')}</div><div id="cff-detail-slot">${detail()}</div>`;}
+  function detail(){
+    if(!state.selected)return '';
+    const c=cmp(state.selected),r=current(c.id);
+    const tabs={overview:'Übersicht',profile:'Ansprechpartner & Unternehmen',followups:'Follow-ups',communication:'Kommunikation',documents:'Dokumente'};
+    const panel=state.detailTab==='profile'?profilePanel(c):state.detailTab==='followups'?followupsPanel(c):state.detailTab==='communication'?communicationPanel(c):state.detailTab==='documents'?documentsPanel(c):overviewPanel(c,r);
+    return `<section class="cff-detail" aria-label="Unternehmensdetails"><div class="cff-detail-top"><div><div class="cff-eyebrow">${eventNames[state.event]} · ${state.year}</div><h3>${esc(c.name)}</h3></div><button type="button" class="cursor-interaction" data-close="1">Schließen</button></div><nav class="cff-detail-nav" aria-label="Bereiche der Unternehmensdetails">${Object.entries(tabs).map(([key,label])=>`<button type="button" class="cursor-interaction" data-detail-tab="${key}" aria-pressed="${state.detailTab===key}">${label}${key==='followups'?` · ${c.followups.filter(f=>!f.done).length}`:key==='documents'?` · ${c.documents.length}`:''}</button>`).join('')}</nav><div class="cff-detail-body">${panel}</div></section>`;
+  }
+  function overviewPanel(c,r){
+    const history=records.filter(x=>x.c===c.id).sort((a,b)=>b.year-a.year);
+    return `<div class="cff-detail-grid"><div><div class="cff-field"><div class="cff-sub">Ansprechpartner · ${esc(c.role||'Funktion noch offen')}</div>${esc(c.contact)}<br>${esc(c.mail||'E-Mail noch offen')}<br>${esc(c.phone||'Telefon: noch zu recherchieren')}</div><button type="button" class="cursor-interaction" data-detail-tab="profile">Kontaktdaten bearbeiten</button><div class="cff-field" style="margin-top:14px"><div class="cff-sub">Betreuung bei Campus for Finance</div>${esc(c.owner)}</div><div class="cff-sub">Alle Events und Jahre</div><div class="cff-history">${history.map(h=>`<button type="button" class="cursor-interaction" data-history="${h.id}" aria-pressed="${h.id===r?.id}">${h.event==='nyc'?'NYC':'PEC'} ${h.year} · ${singular[h.status]}</button>`).join('')}</div>${r?`${badge(r)}${state.year>=2027?`<div class="cff-actions"><button type="button" class="cursor-interaction" data-send="${r.id}" ${r.status==='todo'?'':'disabled'}>Anfrage gesendet</button><button type="button" class="cursor-interaction" data-yes="${r.id}">Zusage</button><button type="button" class="cursor-interaction" data-no="${r.id}" ${r.contract||r.paid?'disabled':''}>Absage</button></div>${decisionFields(r)}`:''}`:`<button type="button" class="cursor-interaction" data-plan="${c.id}">Für ${state.year} einplanen</button>`}</div><div><div class="cff-sub">Kommunikation & Vereinbarungen · Beispieldaten</div><ul class="cff-timeline">${r?`<li>${esc(r.note)}</li>${r.log.map(item=>`<li><span class="cff-sub">${esc(item.type)}</span><br>${esc(item.text)}</li>`).join('')}<li><span class="cff-sub">${r.status==='yes'?'Vereinbarte':'Besprochene'} Leistungen</span><br>${esc(r.format)}</li><li><span class="cff-sub">Teilnahme</span><br>${esc(r.attendance)}</li>`:'<li>Für dieses Eventjahr noch keine Kommunikation.</li>'}</ul><div class="cff-actions"><button type="button" class="cursor-interaction" data-detail-tab="followups">Follow-ups & Deadlines · ${c.followups.filter(f=>!f.done).length} offen</button><button type="button" class="cursor-interaction" data-detail-tab="communication">Kommunikation ergänzen</button><button type="button" class="cursor-interaction" data-detail-tab="documents">Dokumentenordner · ${c.documents.length}</button></div></div></div>`;
+  }
+  function profilePanel(c){return `<form id="cff-profile-form" data-company="${c.id}" class="cff-edit"><div class="cff-detail-grid"><div class="cff-form-stack"><h3>Ansprechpartner</h3><label>Name<input name="contact" required maxlength="150" value="${esc(c.contact)}"></label><label>Funktion / Abteilung<input name="role" maxlength="150" value="${esc(c.role)}" placeholder="z. B. Hochschulrecruiting"></label><label>E-Mail-Adresse<input name="mail" type="email" value="${esc(c.mail)}"></label><label>Telefonnummer<input name="phone" type="tel" value="${esc(c.phone)}" placeholder="Telefonnummer ergänzen"></label><label>Betreuung bei Campus for Finance<select name="owner"><option ${c.owner==='Kim'?'selected':''}>Kim</option><option ${c.owner==='Teammitglied 2'?'selected':''}>Teammitglied 2</option></select></label></div><div class="cff-form-stack"><h3>Unternehmensinformationen</h3><label>Unternehmensname<input name="companyName" required maxlength="150" value="${esc(c.name)}"></label><label>Website<input name="website" type="url" value="${esc(c.website)}" placeholder="https://…"></label><label>Branche<input name="industry" maxlength="150" value="${esc(c.industry)}" placeholder="z. B. Finanzdienstleistungen"></label><label>Standort<input name="location" maxlength="150" value="${esc(c.location)}"></label><label>Informationen / Besonderheiten<textarea name="info" rows="4" maxlength="5000" placeholder="Interessen, Budgetplanung, wichtige Hinweise …">${esc(c.info)}</textarea></label></div></div><button type="button" data-submit-form class="cursor-interaction">Unternehmens- und Kontaktdaten übernehmen</button><div class="cff-sub">Gilt für dieses Unternehmen in allen Listen und Jahren.</div></form>${c.contactHistory.length?`<details class="cff-archive"><summary>Bisherige Kontaktstände · ${c.contactHistory.length}</summary><ul class="cff-timeline">${c.contactHistory.map(h=>`<li><span class="cff-sub">Geändert am ${esc(h.date)}</span><br>${esc(h.contact)} · ${esc(h.role)}<br>${esc(h.mail)}${h.phone?` · ${esc(h.phone)}`:''}</li>`).join('')}</ul></details>`:''}`;}
+  function scopeLabel(scope){if(scope==='general')return 'Unternehmen · allgemein';const [event,year]=scope.split(':');return `${eventNames[event]||event} ${year}`;}
+  function scopeOptions(selected=`${state.event}:${state.year}`){const scopes=[...new Set(['general',`${state.event}:${state.year}`, ...records.filter(r=>r.c===state.selected).map(r=>`${r.event}:${r.year}`)])];if(!scopes.includes(selected))scopes.push(selected);return scopes.map(s=>`<option value="${esc(s)}" ${s===selected?'selected':''}>${esc(scopeLabel(s))}</option>`).join('');}
+  function dateLabel(date){if(!date)return 'Ohne Deadline';const [year,month,day]=date.split('-');return `${day}.${month}.${year}`;}
+  function todayISO(){const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
+  function followupsPanel(c){const editing=c.followups.find(f=>f.id===state.editingFollowup);const sorted=[...c.followups].sort((a,b)=>Number(a.done)-Number(b.done)||(a.date||'9999').localeCompare(b.date||'9999'));return `<div class="cff-sub">Follow-ups und Deadlines für dieses Unternehmen · alle Events</div><ul class="cff-item-list">${sorted.length?sorted.map(f=>`<li><div class="cff-item-main"><label class="cff-check"><input type="checkbox" data-follow-done="${f.id}" ${f.done?'checked':''}><span class="${f.done?'cff-done':''}">${esc(f.title)}</span></label><div class="cff-sub">${esc(scopeLabel(f.scope))} · ${esc(f.owner)}</div><span class="cff-pill ${!f.done&&f.date&&f.date<todayISO()?'cff-pill-next':''}">${f.done?'Erledigt':f.date&&f.date<todayISO()?'Überfällig · ':''}${f.done?'':dateLabel(f.date)}</span></div><button type="button" class="cursor-interaction" data-follow-edit="${f.id}">Bearbeiten</button></li>`).join(''):'<li>Noch keine Follow-ups eingetragen.</li>'}</ul><form id="cff-follow-form" data-company="${c.id}" data-follow-id="${editing?.id||''}" class="cff-edit"><h3>${editing?'Follow-up bearbeiten':'Follow-up hinzufügen'}</h3><label>Was ist zu tun?<input name="title" required maxlength="300" value="${esc(editing?.title||'')}" placeholder="z. B. Zum Workshop-Angebot nachfassen"></label><div class="cff-detail-grid"><label>Deadline / fällig am<input name="dueDate" type="date" value="${esc(editing?.date||'')}"></label><label>Verantwortlich<select name="owner"><option ${(editing?.owner||c.owner)==='Kim'?'selected':''}>Kim</option><option ${(editing?.owner||c.owner)==='Teammitglied 2'?'selected':''}>Teammitglied 2</option></select></label></div><label>Zuordnung<select name="scope">${scopeOptions(editing?.scope)}</select></label><div class="cff-actions"><button type="button" data-submit-form class="cursor-interaction">${editing?'Änderungen übernehmen':'Follow-up hinzufügen'}</button>${editing?'<button type="button" class="cursor-interaction" data-follow-cancel="1">Abbrechen</button>':''}</div></form>`;}
+  function communicationPanel(c){const r=current(c.id);const messages=[...c.communication].sort((a,b)=>b.date.localeCompare(a.date)||b.id-a.id);return `<div class="cff-field"><div class="cff-sub">Aktueller Ansprechpartner</div>${esc(c.contact)} · ${esc(c.mail||'E-Mail fehlt')} · ${esc(c.phone||'Telefon fehlt')}<div class="cff-actions"><button type="button" class="cursor-interaction" data-detail-tab="profile">E-Mail / Telefonnummer bearbeiten</button></div></div><details class="cff-archive"><summary>Outlook-Verknüpfung · ${c.outlookUrl?'manueller Link hinterlegt':'noch nicht eingerichtet'}</summary><form id="cff-outlook-form" data-company="${c.id}" class="cff-edit"><label>Outlook-Link zu E-Mail oder Ordner<input name="outlookUrl" type="url" value="${esc(c.outlookUrl)}" placeholder="https://…"></label><button type="button" data-submit-form class="cursor-interaction">Link hinterlegen</button>${c.outlookUrl?`<a href="${esc(c.outlookUrl)}" target="_blank" rel="noopener noreferrer">Hinterlegten Outlook-Link öffnen</a>`:''}<div class="cff-sub">Geplant: automatische Zuordnung von E-Mails. Hier wird nur ein manueller Link hinterlegt.</div></form></details><form id="cff-communication-form" data-company="${c.id}" class="cff-edit"><h3>Kommunikation festhalten</h3><div class="cff-detail-grid"><label>Art<select name="channel"><option>E-Mail eingegangen</option><option>E-Mail gesendet</option><option>Telefonat</option><option>Meeting</option><option>Interne Notiz</option></select></label><label>Datum<input name="date" type="date" required value="${todayISO()}"></label></div><label>Betreff / Thema<input name="subject" required maxlength="300" placeholder="z. B. Rückmeldung zum Angebot"></label><label>Inhalt / Gesprächsnotiz<textarea name="body" rows="4" required maxlength="12000"></textarea></label><label>Zuordnung<select name="scope">${scopeOptions()}</select></label><button type="button" data-submit-form class="cursor-interaction">Eintrag hinzufügen</button><div class="cff-sub">Dokumentiert Kommunikation; versendet keine E-Mail.</div></form><h3>Verlauf</h3><ul class="cff-timeline">${messages.map(m=>`<li><div class="cff-sub">${dateLabel(m.date)} · ${esc(m.channel)} · ${esc(scopeLabel(m.scope))}</div><div>${esc(m.subject)}</div><div class="cff-prewrap">${esc(m.body)}</div><div class="cff-sub">Kontakt: ${esc(m.contact)}${m.mail?` · ${esc(m.mail)}`:''}${m.phone?` · ${esc(m.phone)}`:''}</div></li>`).join('')}${r?`<li><div class="cff-sub">Bisheriger Gesprächsstand · ${eventNames[r.event]} ${r.year} · Beispieldaten</div>${esc(r.note)}</li>${r.log.map(l=>`<li><span class="cff-sub">${esc(l.type)} · ${eventNames[r.event]} ${r.year}</span><br>${esc(l.text)}</li>`).join('')}`:''}${!messages.length&&!r?'<li>Noch keine Kommunikation erfasst.</li>':''}</ul>`;}
+  function documentsPanel(c){return `<h3>Dokumentenordner · ${esc(c.name)}</h3><div class="cff-sub">Alle hinzugefügten Dokumente dieses Unternehmens</div><div class="cff-edit"><div class="cff-detail-grid"><label>Dokumentart<select id="cff-document-category"><option>Angebot</option><option>Vertrag</option><option>Unternehmensinformationen</option><option>Sonstiges</option></select></label><label>Zuordnung<select id="cff-document-scope">${scopeOptions()}</select></label></div><label>Dokumente hinzufügen<input id="cff-document-input" type="file" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.csv,.png,.jpg,.jpeg" data-company="${c.id}"></label><div class="cff-sub">PDF, Office-Dateien, Text oder Bilder · in dieser Demo nur für die geöffnete Ansicht.</div></div><ul class="cff-item-list">${c.documents.length?c.documents.map(d=>`<li><div class="cff-item-main"><div>${esc(d.name)}</div><div class="cff-sub">${esc(d.category)} · ${esc(scopeLabel(d.scope))}</div><div class="cff-sub">${Math.max(1,Math.round(d.size/1024))} KB · hinzugefügt am ${esc(d.date)}</div></div><div class="cff-actions"><a href="${esc(d.url)}" target="_blank" rel="noopener noreferrer">Öffnen</a><a href="${esc(d.url)}" download="${esc(d.name)}">Herunterladen</a><button type="button" class="cursor-interaction" data-document-remove="${d.id}">Entfernen</button></div></li>`).join(''):'<li>Noch keine Dateien hinzugefügt.</li>'}</ul>`;}
+  function decisionFields(r){if(r.status==='yes')return `<form id="cff-yes-form" data-id="${r.id}" class="cff-edit"><label>Zugesagter Betrag (€)<input name="amount" type="number" min="0" step="0.01" required value="${r.amount??''}"></label><label>Vereinbarte Formate<input name="format" type="text" value="${esc(r.format==='Noch offen'?'':r.format)}"></label><label>Teilnehmende Personen<input name="attendance" type="text" value="${esc(r.attendance)}"></label><button type="button" data-submit-form class="cursor-interaction">Angaben übernehmen</button></form><div class="cff-notice">Vertrag: ${r.contract?'unterschrieben':'noch offen'} · Eingegangen: ${euro(r.paid)}</div><label class="cff-check"><input type="checkbox" data-again="${r.id}" ${r.again?'checked':''}>Für ${r.year+1} vormerken</label>`;if(r.status==='no')return `<div class="cff-edit"><label>Absagegrund<select id="cff-reason" data-id="${r.id}"><option value="" ${!r.reason?'selected':''}>Bitte auswählen</option><option value="budget" ${r.reason==='budget'?'selected':''}>Dieses Jahr kein Budget / nächstes Jahr gerne</option><option value="never" ${r.reason==='never'?'selected':''}>Solche Events sponsern wir grundsätzlich nicht</option><option value="other" ${r.reason==='other'?'selected':''}>Anderer Grund / noch unklar</option></select></label><label class="cff-check"><input type="checkbox" data-again="${r.id}" ${r.again?'checked':''} ${r.reason==='never'?'disabled':''}>Für ${r.year+1} vormerken</label></div>`;return '';}
+  function render(){root.querySelectorAll('[data-nav]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.nav===state.view)));const yearSelect=root.querySelector('#cff-year');yearSelect.innerHTML=[...new Set([2026,2027,2028,state.year,...records.map(r=>r.year)])].sort((a,b)=>a-b).map(y=>`<option value="${y}">${y}</option>`).join('');yearSelect.value=String(state.year);screen.innerHTML=state.view==='home'?home():state.view==='directory'?directory():list();}
+  function find(id){return records.find(r=>r.id===Number(id));}
+  function log(r,type,text){r.log.push({type,text});}
+  root.addEventListener('click',ev=>{const b=ev.target.closest('button');if(!b||!root.contains(b)||b.disabled)return;const d=b.dataset;
+    if(d.nav){state.view=d.nav;state.selected=null;state.query='';render();}
+    else if(d.event){state.view='event';state.event=d.event;state.filter='all';state.selected=null;state.query='';render();}
+    else if(d.filter){state.filter=d.filter;state.selected=null;render();}
+    else if(d.company){state.selected=d.company;state.detailTab='overview';state.editingFollowup=null;render();}
+    else if(d.close){state.selected=null;render();}
+    else if(d.history){const r=find(d.history);state.event=r.event;state.year=r.year;state.filter='all';state.query='';render();}
+    else if(d.plan){addPlan(d.plan,state.event,state.year);state.selected=d.plan;notify(`${cmp(d.plan).name}: Für ${state.year} unter „Noch anzufragen“ eingeplant.`);render();}
+    else if(d.send){const r=find(d.send);if(r.status!=='todo')return;r.status='pending';r.sent=true;log(r,'Anfrage gesendet · Beispiel','Erste Sponsoringanfrage als gesendet markiert.');notify(`${cmp(r.c).name} steht jetzt unter „Ausstehend“. Der Gesamtbestand und die Vorjahre bleiben erhalten.`);state.selected=null;render();}
+    else if(d.yes){const r=find(d.yes);if(r.status!=='yes'){r.status='yes';r.amount=null;r.reason='';r.again=false;log(r,'Rückmeldung · Beispiel','Zusage eingetragen; Betrag und Vereinbarung ergänzen.');}notify('Zusage eingetragen. Betrag und Vereinbarung können jetzt ergänzt werden.');render();}
+    else if(d.no){const r=find(d.no);if(r.contract||r.paid)return;if(r.status!=='no'){r.status='no';r.reason='';r.again=false;log(r,'Rückmeldung · Beispiel','Absage eingetragen; Grund noch offen.');}notify('Absage eingetragen. Der Grund steuert die Vormerkung für das nächste Jahr.');render();}
+    else if(d.roll){const r=find(d.roll);const n=addPlan(r.c,r.event,r.year+1);notify(`${cmp(r.c).name}: Vorgang für ${n.year} vorhanden unter „${singular[n.status]}“. ${r.year} bleibt unverändert.`);state.year=n.year;state.event=n.event;state.filter='todo';state.selected=null;state.query='';state.view='event';render();}
+  });
+  root.addEventListener('input',ev=>{if(ev.target.id==='cff-search'){state.query=ev.target.value;root.querySelector('#cff-list-content').innerHTML=table();}});
+  root.addEventListener('change',ev=>{const t=ev.target;if(t.id==='cff-year'){state.year=Number(t.value);state.selected=null;state.filter='all';render();}else if(t.id==='cff-reason'){const r=find(t.dataset.id);r.reason=t.value;r.again=t.value==='budget';log(r,'Absagegrund',t.value==='budget'?'Dieses Jahr kein Budget; nächstes Jahr erneut anfragen.':t.value==='never'?'Grundsätzlich kein Sponsoring solcher Events.':'Grund noch zu klären.');notify(r.again?`Zusätzlich auf „Nächstes Jahr · ${r.year+1}“ vorgemerkt.`:'Keine automatische Vormerkung für nächstes Jahr.');render();}else if(t.dataset.again){const r=find(t.dataset.again);r.again=t.checked&&r.reason!=='never';notify(r.again?`Für ${r.year+1} vorgemerkt.`:'Vormerkung entfernt.');render();}});
+  root.addEventListener('submit',ev=>{if(ev.target.id!=='cff-yes-form')return;ev.preventDefault();const form=ev.target;if(!form.reportValidity())return;const r=find(form.dataset.id);const amount=Number(form.elements.amount.value);if(!Number.isFinite(amount)||amount<0)return;r.amount=amount;r.format=form.elements.format.value.trim()||'Noch offen';r.attendance=form.elements.attendance.value.trim()||'Noch offen';log(r,'Vereinbarung',`${euro(r.amount)} · ${r.format}`);notify('Betrag und Vereinbarung aktualisiert. Die Zusagensumme wurde neu berechnet.');render();});
+  root.addEventListener('click',ev=>{
+    const b=ev.target.closest('button');if(!b||!root.contains(b)||b.disabled)return;const d=b.dataset;
+    if('submitForm' in d){const form=b.closest('form');if(form)form.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));}
+    else if(d.detailTab){state.detailTab=d.detailTab;state.editingFollowup=null;render();}
+    else if(d.followEdit){state.editingFollowup=Number(d.followEdit);render();}
+    else if(d.followCancel){state.editingFollowup=null;render();}
+    else if(d.documentRemove){const c=cmp(state.selected);const doc=c.documents.find(x=>x.id===Number(d.documentRemove));if(doc){URL.revokeObjectURL(doc.url);c.documents=c.documents.filter(x=>x.id!==doc.id);notify('Dokument aus dieser Demo-Ansicht entfernt.');render();}}
+  });
+  root.addEventListener('change',ev=>{
+    const t=ev.target;
+    if(t.dataset.followDone){const f=cmp(state.selected).followups.find(x=>x.id===Number(t.dataset.followDone));if(f){f.done=t.checked;notify(f.done?'Follow-up als erledigt markiert.':'Follow-up wieder geöffnet.');render();}}
+    else if(t.id==='cff-document-input'){
+      const c=cmp(t.dataset.company),scope=root.querySelector('#cff-document-scope').value,category=root.querySelector('#cff-document-category').value;
+      const files=Array.from(t.files||[]);let added=0,rejected=0;
+      for(const file of files){if(!/\.(pdf|docx?|xlsx?|pptx?|txt|csv|png|jpe?g)$/i.test(file.name)){rejected++;continue;}const url=URL.createObjectURL(file);c.documents.push({id:nextDetailId++,name:file.name,size:file.size,category,scope,url,date:dateLabel(todayISO())});added++;}
+      notify(`${added} Dokument(e) für ${c.name} in dieser Ansicht hinzugefügt.${rejected?' Nicht unterstützte Dateitypen wurden übersprungen.':''}`);render();
+    }
+  });
+  root.addEventListener('submit',ev=>{
+    const form=ev.target;if(!['cff-profile-form','cff-follow-form','cff-communication-form','cff-outlook-form'].includes(form.id))return;
+    ev.preventDefault();if(!form.reportValidity())return;const c=cmp(form.dataset.company),f=form.elements;
+    if(form.id==='cff-profile-form'){
+      const next={contact:f.contact.value.trim(),role:f.role.value.trim(),mail:f.mail.value.trim(),phone:f.phone.value.trim()};
+      if(!next.contact||!f.companyName.value.trim()){notify('Bitte Unternehmensname und Ansprechpartner ausfüllen.');return;}
+      if(['contact','role','mail','phone'].some(k=>c[k]!==next[k]))c.contactHistory.unshift({contact:c.contact,role:c.role,mail:c.mail,phone:c.phone,date:dateLabel(todayISO())});
+      Object.assign(c,next,{name:f.companyName.value.trim(),owner:f.owner.value,website:f.website.value.trim(),industry:f.industry.value.trim(),location:f.location.value.trim(),info:f.info.value.trim()});
+      notify('Unternehmens- und Kontaktdaten in allen Ansichten aktualisiert.');render();
+    }else if(form.id==='cff-follow-form'){
+      const title=f.title.value.trim();if(!title){notify('Bitte eine Aufgabe eintragen.');return;}
+      const existing=c.followups.find(x=>x.id===Number(form.dataset.followId));const values={title,date:f.dueDate.value,owner:f.owner.value,scope:f.scope.value};
+      if(existing)Object.assign(existing,values);else c.followups.push({id:nextDetailId++,...values,done:false});
+      state.editingFollowup=null;notify(existing?'Follow-up aktualisiert.':'Follow-up mit Zuordnung und Deadline hinzugefügt.');render();
+    }else if(form.id==='cff-communication-form'){
+      const subject=f.subject.value.trim(),body=f.body.value.trim();if(!subject||!body){notify('Bitte Thema und Inhalt ergänzen.');return;}
+      c.communication.push({id:nextDetailId++,date:f.date.value,channel:f.channel.value,subject,body,scope:f.scope.value,contact:c.contact,mail:c.mail,phone:c.phone});
+      notify('Kommunikationseintrag hinzugefügt.');render();
+    }else if(form.id==='cff-outlook-form'){
+      const url=f.outlookUrl.value.trim();if(url){try{const u=new URL(url);if(u.protocol!=='https:')throw new Error('protocol');}catch{notify('Bitte einen vollständigen HTTPS-Link eintragen.');return;}}
+      c.outlookUrl=url;notify(url?'Manuellen Outlook-Link hinterlegt. Eine automatische Synchronisierung ist noch nicht eingerichtet.':'Outlook-Link entfernt.');render();
+    }
+  });
+  root.addEventListener('keydown',ev=>{if(ev.key==='Enter'&&ev.target.tagName==='INPUT'&&!['file','checkbox'].includes(ev.target.type)){const form=ev.target.closest('form');if(form){ev.preventDefault();form.dispatchEvent(new Event('submit',{bubbles:true,cancelable:true}));}}});
+  render();
+})();
+
+</script>
+</div>
+
+<script src="https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js"></script>
+<script src="https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js"></script>
+<script>
+(() => {
+  if (window.FloatingUIDOM == null) {
+    return;
+  }
+  const { autoUpdate, computePosition, flip, offset, shift, size } =
+    window.FloatingUIDOM;
+  const tooltipPlacements = new Set(["top", "right", "bottom", "left"]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+  let lastPointerWasTouch = false;
+  let pinnedByTouch = false;
+
+  const getTrigger = (event) => {
+    for (const target of event.composedPath()) {
+      if (target?.nodeType === Node.ELEMENT_NODE) {
+        const trigger = target.closest("[data-tooltip]");
+        if (trigger) return trigger;
+      }
+    }
+    return null;
+  };
+  const containsTarget = (trigger, target) =>
+    target?.nodeType != null && trigger.contains(target);
+  const getContent = (trigger) =>
+    trigger.getAttribute("data-tooltip")?.trim() ?? "";
+  const getPlacement = (trigger) => {
+    const placement = trigger.getAttribute("data-tooltip-placement");
+    return tooltipPlacements.has(placement) ? placement : "top";
+  };
+  const getTooltip = () => {
+    if (tooltip == null) {
+      tooltip = document.createElement("div");
+      tooltip.id = tooltipId;
+      tooltip.className = "tooltip";
+      tooltip.setAttribute("role", "tooltip");
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) => {
+    const ids = new Set(
+      (trigger.getAttribute("aria-describedby") ?? "")
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute("aria-describedby");
+    } else {
+      trigger.setAttribute("aria-describedby", [...ids].join(" "));
+    }
+  };
+  const clearOpenTimeout = () => {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) => {
+    clearOpenTimeout();
+    pinnedByTouch = false;
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating) => {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              "--tooltip-available-width",
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              "--tooltip-available-height",
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: "fixed",
+    })
+      .then(({ x, y }) => {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = "visible";
+      })
+      .catch(() => {
+        if (activeTrigger === trigger && request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) => {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = "hidden";
+    floating.style.transform = "translate(0, 0)";
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    autoUpdateCleanup = autoUpdate(trigger, floating, () => {
+      updatePosition(trigger, floating);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) => {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() < skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() => {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) => {
+    if (event.pointerType === "touch") {
+      return;
+    }
+    const trigger = getTrigger(event);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handlePointer = (event) => {
+    lastPointerWasTouch =
+      event.type === "pointerdown" && event.pointerType === "touch";
+  };
+  const handleTouchClick = (event) => {
+    const isTouch = event.pointerType === "touch" || lastPointerWasTouch;
+    lastPointerWasTouch = false;
+    if (!isTouch || event.detail === 0) {
+      return;
+    }
+    const trigger = getTrigger(event);
+    if (
+      trigger == null ||
+      !trigger.isConnected ||
+      getContent(trigger).length === 0 ||
+      (pinnedByTouch && activeTrigger === trigger)
+    ) {
+      if (pinnedByTouch) {
+        closeTooltip();
+      }
+      return;
+    }
+    openTooltip(trigger);
+    pinnedByTouch = activeTrigger === trigger;
+    window.setTimeout(() => {
+      if (activeTrigger === trigger && !trigger.isConnected) {
+        closeTooltip(false);
+      }
+    }, 0);
+  };
+  const handleLeave = (event) => {
+    if (pinnedByTouch) {
+      return;
+    }
+    const trigger = getTrigger(event);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) => {
+    const trigger = getTrigger(event);
+    if (trigger?.matches(":focus-visible")) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) => {
+    if (event.key === "Escape") {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) => {
+    lastPointerWasTouch = false;
+    const trigger = getTrigger(event);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handlers = {
+    pointerover: handlePointerOpen,
+    pointerdown: handlePointer,
+    pointercancel: handlePointer,
+    click: handleTouchClick,
+    pointerout: handleLeave,
+    focusin: handleFocusIn,
+    focusout: handleLeave,
+    keydown: handleKeyDown,
+    contextmenu: handleContextMenu,
+  };
+  const roots = new Map();
+  const handledEvents = new WeakSet();
+  const handleEvent = (event) => {
+    if (handledEvents.has(event)) return;
+    handledEvents.add(event);
+    handlers[event.type](event);
+  };
+  const discoverRoots = (node) => {
+    if (node.shadowRoot) listen(node.shadowRoot);
+    for (const element of node.querySelectorAll("*")) {
+      if (element.shadowRoot) listen(element.shadowRoot);
+    }
+  };
+  const listen = (root) => {
+    if (roots.has(root)) return;
+    for (const type of Object.keys(handlers)) root.addEventListener(type, handleEvent);
+    const observer = new window.MutationObserver((records) => {
+      for (const { addedNodes } of records) {
+        for (const node of addedNodes) {
+          if (node.nodeType === Node.ELEMENT_NODE) discoverRoots(node);
+        }
+      }
+      for (const [root, cleanup] of roots) {
+        if (root.host && !root.host.isConnected) {
+          cleanup();
+          roots.delete(root);
+        }
+      }
+      if (activeTrigger && !activeTrigger.isConnected) closeTooltip(false);
+    });
+    observer.observe(root, { childList: true, subtree: true });
+    roots.set(root, () => {
+      observer.disconnect();
+      for (const type of Object.keys(handlers)) root.removeEventListener(type, handleEvent);
+    });
+    discoverRoots(root);
+  };
+  const destroy = () => {
+    closeTooltip(false);
+    lastPointerWasTouch = false;
+    for (const cleanup of roots.values()) cleanup();
+    roots.clear();
+    tooltip = null;
+  };
+
+  // Events between children of one shadow root never reach the document.
+  listen(document);
+  window.addEventListener("pagehide", destroy, { once: true });
+})();
+</script>
+<script id="codex-visualization-tabs">
+(() => {
+  const selector = '.nav[role="tablist"] [role="tab"]';
+  const disabled = ':disabled,[aria-disabled="true"]';
+  const selectTab = (selected) => {
+    const panelId = selected.getAttribute("aria-controls");
+    for (const tab of selected.closest('[role="tablist"]').querySelectorAll('[role="tab"]')) {
+      const active = tab === selected;
+      tab.classList.toggle("active", active);
+      tab.setAttribute("aria-selected", String(active));
+      const id = tab.getAttribute("aria-controls");
+      const panel = id && document.getElementById(id);
+      if (panel != null) {
+        panel.hidden = id !== panelId;
+        if (!panel.hidden && selected.id) {
+          panel.setAttribute("aria-labelledby", selected.id);
+        }
+      }
+    }
+  };
+  const interact = (event) => {
+    const tab = event.target?.closest?.(selector);
+    if (event.defaultPrevented || tab == null || tab.matches(disabled)) {
+      return;
+    }
+    if (event.type === "click") {
+      selectTab(tab);
+      return;
+    }
+    const tabs = Array.from(
+      tab.closest('[role="tablist"]').querySelectorAll('[role="tab"]'),
+    ).filter((candidate) => !candidate.matches(disabled));
+    const current = tabs.indexOf(tab);
+    let next;
+    if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+      next = (current + 1) % tabs.length;
+    } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+      next = (current + tabs.length - 1) % tabs.length;
+    } else if (event.key === "Home") {
+      next = 0;
+    } else if (event.key === "End") {
+      next = tabs.length - 1;
+    } else {
+      return;
+    }
+    event.preventDefault();
+    tabs[next].focus();
+    selectTab(tabs[next]);
+  };
+
+  for (const list of document.querySelectorAll('.nav[role="tablist"]')) {
+    const selected =
+      list.querySelector('[role="tab"][aria-selected="true"]') ??
+      list.querySelector('[role="tab"].active') ??
+      list.querySelector('[role="tab"]');
+    if (selected != null) {
+      selectTab(selected);
+    }
+  }
+  document.addEventListener("click", interact);
+  document.addEventListener("keydown", interact);
+  window.addEventListener("pagehide", () => {
+    document.removeEventListener("click", interact);
+    document.removeEventListener("keydown", interact);
+  }, { once: true });
+})();
+</script>
+<script id="codex-visualization-lucide" async src="https://unpkg.com/lucide@1.17.0/dist/umd/lucide.js"></script>
+<script>
+(() => {
+  const initialize = () => {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById("codex-visualization-lucide")
+    ?.addEventListener("load", initialize, { once: true });
+})();
+</script>
+
+</body>
+</html>
